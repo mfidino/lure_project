@@ -1,12 +1,12 @@
-ap <- read.csv("all_validated_tags_lure_study.csv",
+ap <- read.csv("all_tags_lure_study.csv",
 							 stringsAsFactors = FALSE)
 
 library(dplyr)
 library(lubridate)
 
 # get only the columns we want
-ap <- ap[,c("photoName", "speciesID", "photoDatetime", "fullName", "utmEast",
-						"utmNorth", "utmZone", "visitID", "visitDatetime")]
+ap <- ap[,c("photoName", "photoDatetime", "fullName", "utmEast",
+						"utmNorth", "utmZone", "visitID", "visitDatetime", "commonName")]
 ap$photoDatetime <- ymd_hms(ap$photoDatetime)
 ap$visitDatetime <- ymd_hms(ap$visitDatetime)
 ap$photoDate <- ymd(paste0(year(ap$photoDatetime),"-",
@@ -23,7 +23,7 @@ ap <- ap[!duplicated(ap),]
 
 # grab only speciesID = 1
 
-human <- ap[ap$speciesID == 1,]
+human <- ap[ap$commonName == "Raccoon",]
 
 # make a detection matrix
 

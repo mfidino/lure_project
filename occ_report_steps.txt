@@ -1,0 +1,48 @@
+
+1. get all of the visits with activeStarts and activeEnds that fall between
+your date range for a given study area. For these data the sql statement I used was:
+
+Select activeStart, activeEnd, locationAbbr, vis.locationID
+FROM Visits vis 
+INNER JOIN CameraLocations cl
+ON cl.locationID  = vis.locationID
+AND isnull(activeStart) = FALSE
+INNER JOIN StudyAreas sa
+ON sa.areaID = cl.areaID
+AND sa.areaAbbr = "CHMF"
+
+2. Make a two dimensional array that is full of NA values. Rows equal to the
+number of unique sites for a study area. Columns equal to the number of unique days between
+the first and last day of the input values on site.
+
+3. For each visit to a site, put a 0 in the associated day if it falls within the active date range
+for a visit, otherwise leave it NA.
+
+4. Query which distinct days a given species was detected at each site. 
+I did a lot of this data cleaning in R because I'm sloppy at SQL. Here is 
+the way too much info SQL statement I used:
+
+SELECT *
+FROM Detections
+INNER JOIN DetectionSpecies
+ON Detections.detectionID = DetectionSpecies.detectionID
+AND Detections.valStatID = 2
+INNER JOIN Photos
+ON Detections.photoName = Photos.photoName
+INNER JOIN Visits vis
+ON Photos.visitID = vis.visitID
+INNER JOIN CameraLocations
+ON vis.locationID = CameraLocations.locationID
+INNER JOIN StudyAreas
+ON StudyAreas.areaID = CameraLocations.areaID
+AND StudyAreas.areaAbbr = "CHMF"
+INNER JOIN Species
+ON Species.speciesID = DetectionSpecies.speciesID
+AND Species.speciesID = 1
+
+5. Go from this funky special to the days a species was observed at each site.
+
+5. For each site, put a 1 on a day that the species was detected.
+
+6. Generalize to multiple species, across seasons, etc. This exact set of data can be split into 4 
+different seasons (one week per season) to test the output.
