@@ -15,11 +15,23 @@ for(sp_iter in 1:length(species_to_use)){
 	
 	y <- read.csv(paste0("./data/number_of_photos/", my_species,".csv"))
 	dx <- read.csv("./data/lure_position.csv")
+	
+	
+	dmat <- read.csv(paste0("./data/detection_history/", my_species,".csv"))[,-1]
+	
+	# calculate the number of non-NA days per week.
+	my_week <- matrix(1:28, ncol = 4, nrow = 7)
+	tmax <- matrix(NA, ncol = 4, nrow = 40)
+	
+	for(week in 1:4){
+		tmax[,week] <- 7 - rowSums(is.na(dmat[,my_week[,week]]))
+	}
 
 	data_list <- list(y = as.matrix(y),
 										ncamera = 40,
 										nsite = 20,
 										nweek = 4,
+										tmax = log(tmax),
 										site_vec = rep(1:20, each = 2),
 										dx = as.matrix(dx[,-1]))
 	

@@ -5,7 +5,7 @@ model{
 	# Observation model
 	for(camera in 1:ncamera){
 		for(week in 1:nweek){
-		log(rho[camera, week]) <- D[1] + D[2] * dx[camera,week]+ D_ran[site_vec[camera]]
+		log(rho[camera, week]) <- D[1] + D[2] * dx[camera,week]+ D_ran[site_vec[camera]] + tmax[camera,week]
 		y[camera, week] ~ dpois(rho[camera,week] * z[site_vec[camera]])
 		}
 	}
