@@ -178,7 +178,7 @@ minor.ticks.axis(1,1,mn=0, mx=8 )
 #mtext(text = sprintf("%.0f", 2^seq(0,8, 2)), 
 #			1, line = 0.35, at = seq(0,25, 5))
 mtext(text = 
-				"Expected number of\ndays between detections\n(log2 scale)", 1, 
+				"Expected number of\ndays to first detection\nwithout lure (log2 scale)", 1, 
 			line = 3, at = 4 ,
 			cex = 0.9)
 
@@ -196,7 +196,8 @@ for(sp_iter in 1:8){
 	posterior <- log2((1 / exp(model_array[,2,mu_t[sp_iter]])))
 	posterior <- posterior[between(posterior,HDIofMCMC(posterior)[1],
 																 HDIofMCMC(posterior)[3])]
-	
+
+
 	my_vioplot(posterior, at = sp_iter - tg, horizontal = TRUE, add = TRUE,
 						 side = "right", col = "gray80", drawRect = TRUE,
 						 wex = 1.2)
@@ -216,7 +217,7 @@ axis(1, at= seq(0,3, 0.5), labels = F, tck = -0.0125)
 mtext(text = sprintf("%.0f", seq(0,3, 1)), 
 			1, line = 0.35, at = seq(0,3, 1))
 
-mtext(text = "Proportional change from lure\nin expected number of days\nbetween detections", 1, line = 3, at = 1.75,
+mtext(text = "Proportional change\nin time to first\ndetection from lure", 1, line = 3, at = 1.75,
 			cex = 0.9)
 
 for(sp_iter in 2:8){
@@ -231,6 +232,7 @@ for(sp_iter in 1:8){
 	posterior <- posterior2 / posterior
 	posterior <- posterior[between(posterior,HDIofMCMC(posterior)[1],
 																 HDIofMCMC(posterior)[3])]
+
 	
 	my_vioplot(posterior, at = sp_iter -tg, horizontal = TRUE, add = TRUE,
 						 side = "right", col = "gray80", drawRect = TRUE,

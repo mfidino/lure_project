@@ -11,6 +11,7 @@ species_to_use <- c("Eastern gray squirrel", "White tailed deer",
 # read in the detection matrices and fit the binomial model
 model_array <- array(NA, dim = c(60000, 24, length(species_to_use)))
 for(sp_iter in 1:length(species_to_use)){
+	my_species <- species_to_use[sp_iter]
 	dm <- read.csv(paste0("./data/detection_history/", my_species, ".csv"))
 	
 	# convert the daily dm to weekly
@@ -76,7 +77,7 @@ for(sp_iter in 1:length(species_to_use)){
 		n.chains = 6,
 		monitor = c("psi", "D", "tau_sd", "d_mu"),
 		adapt = 1000,
-		burnin = 10000, 
+		burnin = 50000, 
 		sample = 10000, thin = 5, method = "parallel",
 		inits = inits, summarise = FALSE, modules = "glm")
 	
