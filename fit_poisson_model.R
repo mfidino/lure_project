@@ -84,7 +84,7 @@ for(sp_iter in 1:length(species_to_use)){
 	
 	model_array[,,sp_iter] <- as.matrix(as.mcmc.list(model_output), chains = TRUE)[,-1]
 }
-saveRDS(model_array, "poisson_results_precip.csv")
+saveRDS(model_array, "poisson_results_precip.RDS")
 
 # check out results
 res <- exp(apply(model_array[,2,], 2, HDIofMCMC))

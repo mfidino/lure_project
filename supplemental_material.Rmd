@@ -43,9 +43,9 @@ secondary analysis for each species.
 ### The binomial model
 
 ```{r pull_binomial_results}
-bin_results <- readRDS("det_prob_trips.RDS")
+bin_results <- readRDS("det_prob_precip.RDS")
 
-D <- bin_results[,2:3,]
+D <- bin_results[,2:4,]
 
 test <- apply(D, c(2,3), HDIofMCMC)
 dimnames(test) <- list(1:3, 1:2, species_to_use)
@@ -60,12 +60,12 @@ dimnames(test2) <- list(1:3, 1:2, species_to_use)
 
 
 ```{r pull_timetoevent_results}
-tte_results <- readRDS("exponential_results_trips.RDS")
+tte_results <- readRDS("exponential_results_precip.RDS")
 
-D <- tte_results[,2:3,]
+D <- tte_results[,2:4,]
 
 test <- apply(D, c(2,3), HDIofMCMC)
-dimnames(test) <- list(1:3, 1:2, species_to_use)
+dimnames(test) <- list(1:3, 1:3, species_to_use)
 
 bin_results2 <- readRDS("exponential_results.RDS")
 D2 <- bin_results2[,2:3,]
@@ -75,12 +75,12 @@ dimnames(test2) <- list(1:3, 1:2, species_to_use)
 ```
 
 ```{r pull_poisson_results}
-pois_results <- readRDS("poisson_results_trips.RDS")
+pois_results <- readRDS("poisson_results_precip.RDS")
 
-D <- bin_results[,2:3,]
+D <- bin_results[,2:4,]
 
 test <- apply(D, c(2,3), HDIofMCMC)
-dimnames(test) <- list(1:3, 1:2, species_to_use)
+dimnames(test) <- list(1:3, 1:3, species_to_use)
 
 bin_results2 <- readRDS("poisson_results.RDS")
 D2 <- bin_results2[,2:3,]
