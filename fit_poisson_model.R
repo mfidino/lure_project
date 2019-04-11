@@ -9,7 +9,7 @@ species_to_use <- c("Eastern gray squirrel", "White tailed deer",
 										"Eastern cottontail", "Virginia opossum",
 										"Raccoon", "Fox squirrel",
 										"Chipmunk", "Coyote")
-model_array <- array(NA, dim = c(60000, 25, length(species_to_use)))
+model_array <- array(NA, dim = c(60000, 26, length(species_to_use)))
 for(sp_iter in 1:length(species_to_use)){
 	my_species <- species_to_use[sp_iter]
 	
@@ -33,7 +33,8 @@ for(sp_iter in 1:length(species_to_use)){
 										nweek = 4,
 										tmax = log(tmax),
 										site_vec = rep(1:20, each = 2),
-										dx = as.matrix(dx[,-1]))
+										dx = as.matrix(dx[,-1]),
+										precip = as.matrix(read.csv("./data/precip.csv")))
 	
 	
 	
@@ -42,7 +43,7 @@ for(sp_iter in 1:length(species_to_use)){
 			list( 
 				z = rep(1,20),
 				psi = rbeta(1,1,1),
-				D = rnorm(2),
+				D = rnorm(3),
 				D_ran = rnorm(20),
 				.RNG.name = switch(chain,
 													 "1" = "base::Wichmann-Hill",
@@ -82,7 +83,8 @@ for(sp_iter in 1:length(species_to_use)){
 		inits = inits, summarise = FALSE, modules = "glm")
 	
 	model_array[,,sp_iter] <- as.matrix(as.mcmc.list(model_output), chains = TRUE)[,-1]
-	}
+}
+saveRDS(model_array, "poisson_results_precip.csv")
 
 # check out results
 res <- exp(apply(model_array[,2,], 2, HDIofMCMC))
@@ -101,9 +103,9 @@ plot(1~1, type = "n", xlim = c(0,2.5), ylim = c(1,8.5), xlab = "",
 		 ylab = "", xaxt = "n", yaxt="n", bty = "n", bty = "l")
 
 # fancy shorter names for the species.
-fancy_sp <- c("E. gray sq.", "W.t. deer", 
+fancy_sp <- c("G. squirrel", "W.t. deer", 
 							"E. cottontail", "V. opossum",
-							"Raccoon", "Fox sq.",#, "Str. skunk",
+							"Raccoon", "F. squirrel",#, "Str. skunk",
 							"E. chipmunk", "Coyote")
 
 # sorting the species by their baseline detection probability.

@@ -6,7 +6,7 @@ model{
 	for(camera in 1:ncamera){
 		for(week in 1:nweek){
 			ttd[camera,week] ~ dexp(lambda[camera,week])
-			log(lambda[camera,week]) <- D[1] + D[2] * dx[camera,week] + D_ran[site_vec[camera]]
+			log(lambda[camera,week]) <- D[1] + D[2] * dx[camera,week] + D[3] * precip[camera,week] + D_ran[site_vec[camera]]
 			# model for censoring
 			d[camera, week] ~ dbern(theta[camera,week])
 			theta[camera, week] <- (z[site_vec[camera]] * 
@@ -17,6 +17,7 @@ model{
 	psi_mu ~ dbeta(1,1)
 	D[1] ~ dnorm(0, 0.0001)
 	D[2] ~ dnorm(0, 0.0001)
+	D[3] ~ dnorm(0, 0.0001)
 	
 	for(site in 1:nsite){
 		D_ran[site] ~ dnorm(0, tau_d)

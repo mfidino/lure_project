@@ -11,7 +11,7 @@ species_to_use <- c("Eastern gray squirrel", "White tailed deer",
 
 
 
-model_array <- array(NA, dim = c(60000, 24, length(species_to_use)))
+model_array <- array(NA, dim = c(60000, 25, length(species_to_use)))
 for(sp_iter in 1:length(species_to_use)){
 	
 	my_species <- species_to_use[sp_iter]
@@ -32,17 +32,18 @@ dx <- as.matrix(read.csv("./data/lure_position.csv")[,-1])
 
 # create the data list we need for the time_to_event analysis.
 ttd <- read.csv(paste0("./data/time_to_detection/", my_species,".csv"))
+
+# d is an indicator that = 0 if we detected a species within a week
+#  and is 1 otherwise.
 d <- ttd
 d[!is.na(d)] <- 0
 d[is.na(d)] <- 1
-if(any(ttd > tmax, na.rm = TRUE)){
-	stop("whoops")
-}
 
 data_list <- list(ttd = as.matrix(ttd),
 									tmax = as.matrix(tmax),
 									d = as.matrix(d),
 									dx = as.matrix(dx),
+									precip = as.matrix(read.csv("./data/precip.csv")),
 									site_vec = rep(1:20, each = 2),
 									ncamera = 40,
 									nweek = 4,
@@ -57,7 +58,7 @@ inits <- function(chain){
 		list( 
 			z = z,
 			psi_mu = rbeta(1,1,1),
-			D = rnorm(2),
+			D = rnorm(3),
 			ttd = ttdst,
 			D_ran = rnorm(20),
 			.RNG.name = switch(chain,
@@ -99,7 +100,7 @@ model_array[,,sp_iter] <- as.matrix(as.mcmc.list(model_output), chains = TRUE)[,
 
 }
 
-saveRDS(model_array, "exponential_results.RDS")
+saveRDS(model_array, "exponential_results_precip.RDS")
 a <- apply(exp(model_array[,3,]), 2, quantile, probs = c(0.025,0.5,0.975))
 b <- apply((1 / exp(model_array[,3,] + model_array[,2,])), 
 2, quantile, probs = c(0.025,0.5,0.975))
@@ -126,9 +127,9 @@ plot(1~1, type = "n", xlim = c(0,8), ylim = c(1,9), xlab = "",
 		 ylab = "", xaxt = "n", yaxt="n", bty = "n", bty = "n")
 
 # fancy shorter names for the species.
-fancy_sp <- c("E. gray sq.", "W.t. deer", 
+fancy_sp <- c("G. squirrel", "W.t. deer", 
 							"E. cottontail", "V. opossum",
-							"Raccoon", "Fox sq.",# "Str. skunk",
+							"Raccoon", "F. squirrel",# "Str. skunk",
 							"E. chipmunk", "Coyote")
 
 # sorting the species by their baseline detection probability.

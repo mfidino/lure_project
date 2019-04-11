@@ -9,7 +9,7 @@ species_to_use <- c("Eastern gray squirrel", "White tailed deer",
 
 
 # read in the detection matrices and fit the binomial model
-model_array <- array(NA, dim = c(60000, 24, length(species_to_use)))
+model_array <- array(NA, dim = c(60000, 25, length(species_to_use)))
 for(sp_iter in 1:length(species_to_use)){
 	my_species <- species_to_use[sp_iter]
 	dm <- read.csv(paste0("./data/detection_history/", my_species, ".csv"))
@@ -32,6 +32,7 @@ for(sp_iter in 1:length(species_to_use)){
 	data_list <- list(y = week_dm,
 										J = J,
 										dx = as.matrix(read.csv("./data/lure_position.csv")[,-1]),
+										precip = as.matrix(read.csv("./data/precip.csv")),
 										ncamera = 40,
 										nweek = 4,
 										nsite = 20,
@@ -44,7 +45,7 @@ for(sp_iter in 1:length(species_to_use)){
 			list( 
 				z = rep(1,20),
 				psi = rbeta(1,1,1),
-				D = rnorm(2),
+				D = rnorm(3),
 				D_ran = rnorm(20),
 				.RNG.name = switch(chain,
 													 "1" = "base::Wichmann-Hill",
@@ -86,7 +87,7 @@ for(sp_iter in 1:length(species_to_use)){
 }
 
 # save the model array of analysis for all species.
-saveRDS(model_array, "det_prob.RDS")
+saveRDS(model_array, "det_prob_precip.RDS")
 
 # make a plot of the detection results
 
@@ -103,9 +104,9 @@ plot(1~1, type = "n", xlim = c(0,0.75), ylim = c(1,9), xlab = "",
 		 ylab = "", xaxt = "n", yaxt="n", bty = "n", bty = "n")
 
 # fancy shorter names for the species.
-fancy_sp <- c("E. gray sq.", "W.t. deer", 
+fancy_sp <- c("G. squirrel", "W.t. deer", 
 							"E. cottontail", "V. opossum",
-							"Raccoon", "Fox sq.",#, "Str. skunk",
+							"Raccoon", "F. squirrel",#, "Str. skunk",
 							"E. chipmunk", "Coyote")
 
 # sorting the species by their baseline detection probability.
@@ -119,7 +120,7 @@ axis(1, at= seq(0,0.75, 0.25), labels = F, tck = -0.025)
 axis(1, at= seq(0,0.75, 0.125), labels = F, tck = -0.0125)
 mtext(text = sprintf("%.2f", seq(0,0.75,0.25)), 
 			1, line = 0.35, at = seq(0,0.75,0.25))
-mtext(text = "Daily detection\nprobability", 1, line = 2.7, at = 0.5-.125,
+mtext(text = "Daily detection probability\nwithout lure", 1, line = 2.7, at = 0.5-.125,
 			cex = 1)
 
 text(x = rep(1, 8) - 0.04, y = (1:8 + 0.4) , labels = fancy_sp, pos = 1)

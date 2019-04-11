@@ -1,0 +1,142 @@
+---
+title: "A post-hoc analysis comparing the first week of sampling (no lure) to all other weeks of sampling"
+author: Mason Fidino
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("utility_functions.R")
+library(vioplot)
+library(dplyr)
+```
+
+For this post-hoc uses all of the same models, data, and code for the
+original lure analysis save for the fact that `./data/lure_position.csv` has
+been modified to compare the first week to all other weeks of sampling. 
+In the original model, the first six rows of`lure_position.csv` looks like:
+
+```{r lure, echo = FALSE}
+lure_pos <- read.csv("./data/lure_position.csv", header = TRUE)[,-1]
+head(lure_pos)
+```
+
+where each row indicates a camera, and every two rows is a new sampling unit. This 
+pattern continues throughout the csv file. When
+a lure is present in front of a camera the cell takes the value 1, otherwise it is 0.
+Each column represents a new week of sampling. We created a new design matrix 
+for this post-hoc analysis, `./data/lure_position_posthoc.csv`
+where the first column is all 0 values and the remaining three columns are filled
+with 1's.
+
+```{r lurepc, echo = FALSE}
+lure_posthoc <- read.csv("./data/lure_position_posthoc.csv", header = TRUE)[,-1]
+head(lure_posthoc)
+```
+
+Following this, we reran `fit_exponential_model.R`, `fit_binomial_mode.R`, and
+`fit_poisson_model.R` save for the fact that we used this new design matrix. Below,
+we compare the parameter estimates from the first modeling approach to this 
+secondary analysis for each species. 
+
+
+### The binomial model
+
+```{r pull_binomial_results}
+bin_results <- readRDS("det_prob_trips.RDS")
+
+D <- bin_results[,2:3,]
+
+test <- apply(D, c(2,3), HDIofMCMC)
+dimnames(test) <- list(1:3, 1:2, species_to_use)
+
+bin_results2 <- readRDS("det_prob.RDS")
+D2 <- bin_results2[,2:3,]
+test2 <- apply(D2, c(2,3), HDIofMCMC)
+dimnames(test2) <- list(1:3, 1:2, species_to_use)
+
+
+```
+
+
+```{r pull_timetoevent_results}
+tte_results <- readRDS("exponential_results_trips.RDS")
+
+D <- tte_results[,2:3,]
+
+test <- apply(D, c(2,3), HDIofMCMC)
+dimnames(test) <- list(1:3, 1:2, species_to_use)
+
+bin_results2 <- readRDS("exponential_results.RDS")
+D2 <- bin_results2[,2:3,]
+test2 <- apply(D2, c(2,3), HDIofMCMC)
+dimnames(test2) <- list(1:3, 1:2, species_to_use)
+
+```
+
+```{r pull_poisson_results}
+pois_results <- readRDS("poisson_results_trips.RDS")
+
+D <- bin_results[,2:3,]
+
+test <- apply(D, c(2,3), HDIofMCMC)
+dimnames(test) <- list(1:3, 1:2, species_to_use)
+
+bin_results2 <- readRDS("poisson_results.RDS")
+D2 <- bin_results2[,2:3,]
+test2 <- apply(D2, c(2,3), HDIofMCMC)
+dimnames(test2) <- list(1:3, 1:2, species_to_use)
+
+```
+
+#### Coyote results
+
+You can also embed plots, for example:
+
+```{r coyote_pull_results, echo=FALSE}
+
+
+
+```
+
+
+### The exponential model
+```{r pull_exponential_results, echo = FALSE}
+analysis_1 <- readRDS("exponential_results.RDS")
+analysis_2 <- readRDS("exponential_results_posthoc.RDS")
+```
+
+#### Eastern gray squirrel results
+
+The probability of occupancy estimated between both models were near identical.
+```{r gs_ex_plot, echo = FALSE, message = FALSE}
+a1 <- analysis_1[,1,1]
+a2 <- analysis_2[,1,1]
+
+suppressWarnings(plot(1~1, type = "n", xlim = c(0,1), ylim = c(0.5,1.5), xlab = "",
+		 ylab = "", xaxt = "n", yaxt="n", bty = "n", bty = "n", bty = 'n'))
+axis(1, at= seq(0,1, 0.5), labels = F, tck = -0.025)
+axis(1, at= seq(0,1, 0.25), labels = F, tck = -0.0125)
+mtext(text = sprintf("%.2f", seq(0,1, 0.25)), 
+			1, line = 0.7, at = seq(0,1, 0.25))
+mtext(text = "Probability of occupancy", 1, line = 2.5, at = 0.5, cex = 1.5)
+
+posterior1 <- a1[dplyr::between(a1,HDIofMCMC(a1)[1],
+												 HDIofMCMC(a1)[3])]
+posterior2 <- a2[dplyr::between(a2,HDIofMCMC(a2)[1],
+												 HDIofMCMC(a2)[3])]
+my_vioplot(posterior1, at = 1, horizontal = TRUE, add = TRUE,
+					 side = "right", col = "coral3", drawRect = TRUE,
+					 wex = 1.2 )	
+my_vioplot(posterior2, at = 1, horizontal = TRUE, add = TRUE,
+					 side = "left", col = "cadetblue1", drawRect = TRUE,
+					 wex = 1.2 )	
+legend("bottomleft", legend = c("Analysis in MS", "Post-hoc analysis"),
+			 fill= c("coral3", "cadetblue1"), bty = "n", cex = 1.5)
+
+```
+
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
