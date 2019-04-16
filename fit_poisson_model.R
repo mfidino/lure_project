@@ -99,7 +99,7 @@ tiff("photos_per_week_precip.tiff", height = 4, width = 4,
 # large right margin (2.5) because we are going to be putting species
 #  names in between the two plots.
 par(mar = c(4,6,1,0.5))
-plot(1~1, type = "n", xlim = c(0,2.5), ylim = c(1,8.5), xlab = "",
+plot(1~1, type = "n", xlim = c(0,2.5), ylim = c(1,9), xlab = "",
 		 ylab = "", xaxt = "n", yaxt="n", bty = "n", bty = "l")
 
 # fancy shorter names for the species.
@@ -150,6 +150,27 @@ for(sp_iter in 1:8){
 						 wex = 1.5)
 	#text(y = sp_iter +0.4, x = median(posterior), 
 	#		 labels = sprintf("%.0f", median(posterior)), cex = 0.7)
+	
+	text_loc <- switch(sp_iter,
+										 median(posterior),
+										 median(posterior),
+										 median(posterior),
+										 median(posterior),
+										 median(posterior) + 0.05,
+										 median(posterior),
+										 median(posterior),
+										 median(posterior))
+	the_text <-  switch(sp_iter,
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", median(posterior)))
+	text(y = sp_iter +0.78, x = text_loc, 
+			 labels = the_text, cex = 0.6)
 }
 abline(v = 1, lwd = 2, lty = 3)
 dev.off()
