@@ -91,7 +91,7 @@ res <- exp(apply(model_array[,2,], 2, HDIofMCMC))
 colnames(res) <- species_to_use
 t(res)
 windows(4,4,xpos = 10)
-tiff("photos_per_week.tiff", height = 4, width = 4,
+tiff("photos_per_week_precip.tiff", height = 4, width = 4,
 		 units = "in", res = 800, 
 		 compression = "lzw")
 # two figures in this plot.
@@ -109,7 +109,7 @@ fancy_sp <- c("G. squirrel", "W.t. deer",
 							"E. chipmunk", "Coyote")
 
 # sorting the species by their baseline detection probability.
-mu_t <- order(apply(model_array[,25,], 2 ,median), decreasing = FALSE)
+mu_t <- order(apply(model_array[,26,], 2 ,median), decreasing = FALSE)
 
 fancy_sp <- fancy_sp[mu_t]
 #axis(2, at= seq(1,9), labels = F, tck = -.025)
@@ -139,7 +139,7 @@ mtext(text = "Proportion change in photos taken\nper week from lure",1,
 
 for(sp_iter in 1:8){
 
-	posterior <- model_array[,25,mu_t[sp_iter]]
+	posterior <- model_array[,26,mu_t[sp_iter]]
 	#posterior2 <- exp(rowSums(model_array[,2:3,mu_t[sp_iter]]))
 	#posterior <- posterior2 / posterior
 	posterior <- posterior[between(posterior,HDIofMCMC(posterior)[1],

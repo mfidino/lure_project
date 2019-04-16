@@ -113,7 +113,7 @@ h2 <- median(1 / exp(b+a))
 
 h2 - h
 
-tiff("combo_lure_time.tiff", height = 4, width = 6,
+tiff("combo_lure_time_precip.tiff", height = 4, width = 6,
 		 units = "in", res = 800, 
 		 compression = "lzw")
 #windows(height = 4, width = 6, xpos = 10)
@@ -244,9 +244,9 @@ for(sp_iter in 1:8){
 								 median(posterior),
 								 median(posterior),
 								 median(posterior),
-								 0.8,
 								 median(posterior),
-								 0.8)
+								 median(posterior),
+								 median(posterior))
 	text(y = sp_iter +0.4, x = text_loc, 
 			 labels = sprintf("%.1f", median(posterior)), cex = 0.7)
 }

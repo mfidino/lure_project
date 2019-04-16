@@ -91,7 +91,7 @@ saveRDS(model_array, "det_prob_precip.RDS")
 
 # make a plot of the detection results
 
-tiff("combo_lure_det.tiff", height = 4, width = 6,
+tiff("combo_lure_det_precip.tiff", height = 4, width = 6,
 		 units = "in", res = 800, 
 		 compression = "lzw")
 # two figures in this plot.
@@ -177,16 +177,16 @@ for(sp_iter in 1:8){
 						 wex = 1.2 )
 	text_loc <- switch(sp_iter,
 										 median(posterior),
+										 median(posterior) + 0.02,
 										 median(posterior),
 										 median(posterior),
 										 median(posterior),
 										 median(posterior),
 										 median(posterior),
-										 median(posterior),
-										 0.02)
+										 median(posterior) + 0.02)
 	the_text <-  switch(sp_iter,
 											sprintf("%.2f", median(posterior)),
-											sprintf("%.2f", median(posterior)),
+											sprintf("%.2f", abs(median(posterior))), # close to zero but negative
 											sprintf("%.2f", median(posterior)),
 											sprintf("%.2f", median(posterior)),
 											sprintf("%.2f", median(posterior)),
