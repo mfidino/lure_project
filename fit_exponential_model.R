@@ -240,12 +240,12 @@ for(sp_iter in 1:8){
 						 wex = 1.2 )
 	text_loc <- switch(sp_iter,
 								 median(posterior),
+								 median(posterior)+0.05,
 								 median(posterior),
 								 median(posterior),
 								 median(posterior),
-								 median(posterior),
-								 median(posterior),
-								 median(posterior),
+								 median(posterior) - 0.15,
+								 median(posterior) - 0.1,
 								 median(posterior))
 	text(y = sp_iter +0.4, x = text_loc, 
 			 labels = sprintf("%.1f", median(posterior)), cex = 0.7)
