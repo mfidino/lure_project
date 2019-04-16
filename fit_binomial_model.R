@@ -177,10 +177,10 @@ for(sp_iter in 1:8){
 						 wex = 1.2 )
 	text_loc <- switch(sp_iter,
 										 median(posterior),
-										 median(posterior) + 0.02,
+										 median(posterior) + 0.012,
 										 median(posterior),
 										 median(posterior),
-										 median(posterior),
+										 median(posterior) + 0.005,
 										 median(posterior),
 										 median(posterior),
 										 median(posterior) + 0.02)
