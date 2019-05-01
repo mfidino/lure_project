@@ -3,13 +3,13 @@
 
 Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A trifold approach to quantify the effect of a common olfactory lure on the detection probability of mammals captured on camera traps
 
-<div align="center"><img width="150" height="auto" src="./images/opossumn.JPG" alt="A silhouette of an opossum." /></div>
+<div align="center"><img width="150" height="auto" src="./images/opossum.JPG" alt="A silhouette of an opossum." /></div>
 
 <div align="center"> <h3>Scripts</h3> </div>
 
 ---
 
-**This repository has 3 R Scripts used for the 3 seperaate analyses. They will be in your working directory. These include:**
+**This repository has 3 R Scripts used for the 3 seperate analyses. They will be in your working directory. These include:**
 
 **fit_binomial_model.R:** This script reads in the detection / non-detection data of the species we could analyze and fits the binomal observation model to the data.
 
