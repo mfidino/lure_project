@@ -66,12 +66,51 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 | `week_3` | Numeric | Inches of rain on week 3 |
 | `week_4` | Numeric | Inches of rain on week 4 |
 
- 
- Migatory status for all species was compiled from https://www.allaboutbirds.org/
+ <div align="center"><img width="150" height="auto" src="./images/squirrel.JPG" alt="A silhouette of a squirrel." /></div>
  
 <br>
 <br>
  
+ <div align="center"> <h3>Detection data</h3> </div>
+ 
+**There are 3 folders within the `data` sub-folder that contain they species detection data for each analysis. They include:**
+
+**/data/detection_history:** This contains 8 csv files, all of which are formatted identically. They are titled after each of the 8 species analyzed in the binomial model. The format of these files are
+
+| Column header | Data type | Description |
+|---|---|---|
+| `site`| Character | The site abbreviation. Sampling units are split apart by cameras A and B.` |
+| `day_1` | Numeric | Whether a the species in the csv was detected on this day. Detection = 1, non-detection = 0, sampling did not occur = NA|
+| ... | ... |Additional columns of detection data |
+| `day_28` | Numeric | Whether a the species in the csv was detected on this day. Detection = 1, non-detection = 0, sampling did not occur = NA |
+
+<br>
+<br>
+
+**/data/time_to_detection:** This contains 8 csv files, all of which are formatted identically. They are titled after each of the 8 species analyzed in the exponential model. These files do not contain site information but are ordered identically to `lure_position.csv`. The format of these files are
+
+| Column header | Data type | Description |
+|---|---|---|
+| `week_1` | Numeric | The number of continous days to first detection at a site on week 1. Non-detection = `NA`|
+| `week_2` | Numeric | The number of continous days to first detection at a site on week 2. Non-detection = `NA` |
+| `week_3` | Numeric | The number of continous days to first detection at a site on week 3. Non-detection = `NA` |
+| `week_4` | Numeric | The number of continous days to first detection at a site on week 4. Non-detection = `NA` |
+
+<br>
+<br>
+
+**/data/number_of_photos:** This contains 8 csv files, all of which are formatted identically. They are titled after each of the 8 species analyzed in the Poisson model. These files do not contain site information but are ordered identically to `lure_position.csv`. The format of these files are
+
+| Column header | Data type | Description |
+|---|---|---|
+| `week_1` | Numeric | The number of photos collected of a species at a site on week 1 |
+| `week_2` | Numeric | The number of photos collected of a species at a site on week 2 |
+| `week_3` | Numeric | The number of photos collected of a species at a site on week 3 |
+| `week_4` | Numeric | The number of photos collected of a species at a site on week 4 |
 
 
-<div align="center"><img width="150" height="auto" src="./images/squirrel.JPG" alt="A silhouette of a squirrel." /></div>
+<br>
+<br>
+
+ <div align="center"><img width="150" height="auto" src="./images/deer.JPG" alt="A silhouette of a squirrel." /></div>
+ 
