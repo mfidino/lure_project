@@ -9,7 +9,7 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 
 ---
 
-**This repository has 3 R Scripts used for the 3 seperate analyses. They will be in your working directory. These include:**
+**This repository has 3 R Scripts used for the 3 seperate analyses. They will be in your working directory and are the only files you would need to source to reproduce all of these analyses. These include:**
 
 **fit_binomial_model.R:** This script reads in the detection / non-detection data of the species we could analyze and fits the binomal observation model to the data.
 
