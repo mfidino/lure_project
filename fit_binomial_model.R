@@ -1,5 +1,7 @@
 library(runjags)
 library(rjags)
+library(vioplot)
+source("utility_functions.R")
 
 
 species_to_use <- c("Eastern gray squirrel", "White tailed deer",

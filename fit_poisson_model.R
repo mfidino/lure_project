@@ -3,12 +3,16 @@ library(dplyr)
 library(lubridate)
 library(runjags)
 library(rjags)
+library(vioplot)
+source("utility_functions.R")
 
 
 species_to_use <- c("Eastern gray squirrel", "White tailed deer",
 										"Eastern cottontail", "Virginia opossum",
 										"Raccoon", "Fox squirrel",
 										"Chipmunk", "Coyote")
+
+
 model_array <- array(NA, dim = c(60000, 26, length(species_to_use)))
 for(sp_iter in 1:length(species_to_use)){
 	my_species <- species_to_use[sp_iter]
