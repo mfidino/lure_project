@@ -67,6 +67,7 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 | `week_4` | Numeric | Inches of rain on week 4 |
 
 Rain data were collected from the O'Hare international airport at [https://www.ncdc.noaa.gov/cdo-web/search](https://www.ncdc.noaa.gov/cdo-web/search) 
+
 ---
  <div align="center"><img width="150" height="auto" src="./images/squirrel.JPG" alt="A silhouette of a squirrel." /></div>
  
