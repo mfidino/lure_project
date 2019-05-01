@@ -1,41 +1,41 @@
-"","V1","V2","V3","V4"
-"26 wood A",0,1,1,0
-"26 wood B",0,1,0,1
-"91 St A",0,1,1,0
-"91 St B",0,1,0,1
-"Bemis rope A",0,1,1,0
-"Bemis rope B",0,1,0,1
-"Bemis south A",0,1,1,0
-"Bemis south B",0,1,0,1
-"Bemis wolf A",0,1,1,0
-"Bemis wolf B",0,1,0,1
-"Bluff cass A",0,1,1,0
-"Bluff cass B",0,1,0,1
-"Bluff PO A",0,1,1,0
-"Bluff PO B",0,1,0,1
-"Brezina A",0,1,1,0
-"Brezina B",0,1,0,1
-"Deerpath A",0,1,1,0
-"Deerpath B",0,1,0,1
-"Front ninja A",0,1,1,0
-"Front ninja B",0,1,0,1
-"Lemont 101 A",0,1,1,0
-"Lemont 101 B",0,1,0,1
-"Lib A",0,1,1,0
-"Lib B",0,1,0,1
-"Otta A",0,1,1,0
-"Otta B",0,1,0,1
-"Port_woods_A",0,1,1,0
-"Port_woods_B",0,1,0,1
-"Possum A",0,1,1,0
-"Possum B",0,1,0,1
-"Sunny A",0,1,1,0
-"Sunny B",0,1,0,1
-"WFG left A",0,1,1,0
-"WFG left B",0,1,0,1
-"WFG main A",0,1,1,0
-"WFG main B",0,1,0,1
-"WFG right A",0,1,1,0
-"WFG right B",0,1,0,1
-"York A",0,1,1,0
-"York B",0,1,0,1
+site,week_1,week_2,week_3,week_4
+26 wood A,0,1,1,0
+26 wood B,0,1,0,1
+91 St A,0,1,1,0
+91 St B,0,1,0,1
+Bemis rope A,0,1,1,0
+Bemis rope B,0,1,0,1
+Bemis south A,0,1,1,0
+Bemis south B,0,1,0,1
+Bemis wolf A,0,1,1,0
+Bemis wolf B,0,1,0,1
+Bluff cass A,0,1,1,0
+Bluff cass B,0,1,0,1
+Bluff PO A,0,1,1,0
+Bluff PO B,0,1,0,1
+Brezina A,0,1,1,0
+Brezina B,0,1,0,1
+Deerpath A,0,1,1,0
+Deerpath B,0,1,0,1
+Front ninja A,0,1,1,0
+Front ninja B,0,1,0,1
+Lemont 101 A,0,1,1,0
+Lemont 101 B,0,1,0,1
+Lib A,0,1,1,0
+Lib B,0,1,0,1
+Otta A,0,1,1,0
+Otta B,0,1,0,1
+Port_woods_A,0,1,1,0
+Port_woods_B,0,1,0,1
+Possum A,0,1,1,0
+Possum B,0,1,0,1
+Sunny A,0,1,1,0
+Sunny B,0,1,0,1
+WFG left A,0,1,1,0
+WFG left B,0,1,0,1
+WFG main A,0,1,1,0
+WFG main B,0,1,0,1
+WFG right A,0,1,1,0
+WFG right B,0,1,0,1
+York A,0,1,1,0
+York B,0,1,0,1
