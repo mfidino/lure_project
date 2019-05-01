@@ -28,7 +28,7 @@ for(week in 1:4){
 
 
 # read in the lure position matrix
-dx <- as.matrix(read.csv("./data/lure_position.csv")[,-1])
+dx <- as.matrix(read.csv("./data/lure_position_posthoc.csv")[,-1])
 
 # create the data list we need for the time_to_event analysis.
 ttd <- read.csv(paste0("./data/time_to_detection/", my_species,".csv"))
@@ -105,8 +105,11 @@ a <- apply(exp(model_array[,3,]), 2, quantile, probs = c(0.025,0.5,0.975))
 b <- apply((1 / exp(model_array[,3,] + model_array[,2,])), 
 2, quantile, probs = c(0.025,0.5,0.975))
 
-a <- model_array[,3,1]
-b <- model_array[,2,1]
+a <- model_array[,3,]
+b <- model_array[,2,]
+
+b_est <- t(apply(b, 2, function(x) HDIofMCMC(1/exp(x))))
+row.names(b_est) <- species_to_use
 
 h <- median(1 / exp(b))
 h2 <- median(1 / exp(b+a))

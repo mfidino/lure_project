@@ -90,7 +90,7 @@ for(sp_iter in 1:length(species_to_use)){
 saveRDS(model_array, "det_prob_precip.RDS")
 
 # make a plot of the detection results
-
+windows(8,4)
 tiff("combo_lure_det_precip.tiff", height = 4, width = 6,
 		 units = "in", res = 800, 
 		 compression = "lzw")
