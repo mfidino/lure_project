@@ -13,7 +13,7 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 
 **fit_binomial_model.R:** This script reads in the detection / non-detection data of the species we could analyze and fits the binomal observation model to the data.
 
-**fit_exponenttial_model.R:** This script reads in the time to first detection data of the species we could analyze and fits the exponential observaiton model to the data.
+**fit_exponential_model.R:** This script reads in the time to first detection data of the species we could analyze and fits the exponential observaiton model to the data.
 
 **fit_poisson_model.R:** This script reads in the number of images taken of the species we could analyze and fits the Poisson model to these data.
 
