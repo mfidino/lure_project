@@ -66,13 +66,11 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 | `week_3` | Numeric | Inches of rain on week 3 |
 | `week_4` | Numeric | Inches of rain on week 4 |
 
+---
  <div align="center"><img width="150" height="auto" src="./images/squirrel.JPG" alt="A silhouette of a squirrel." /></div>
  
-<br>
-<br>
- 
  <div align="center"> <h3>Detection data</h3> </div>
- 
+--- 
 **There are 3 folders within the `data` sub-folder that contain they species detection data for each analysis. They include:**
 
 **/data/detection_history:** This contains 8 csv files, all of which are formatted identically. They are titled after each of the 8 species analyzed in the binomial model. The format of these files are
