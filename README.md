@@ -112,5 +112,5 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
 <br>
 <br>
 
- <div align="center"><img width="150" height="auto" src="./images/deer.JPG" alt="A silhouette of a squirrel." /></div>
+ <div align="center"><img width="150" height="auto" src="./images/deer.JPG" alt="A silhouette of a deer." /></div>
  
