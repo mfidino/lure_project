@@ -70,6 +70,7 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A
  <div align="center"><img width="150" height="auto" src="./images/squirrel.JPG" alt="A silhouette of a squirrel." /></div>
  
  <div align="center"> <h3>Detection data</h3> </div>
+ 
 --- 
 **There are 3 folders within the `data` sub-folder that contain they species detection data for each analysis. They include:**
 
