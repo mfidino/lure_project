@@ -1,7 +1,7 @@
 
 ### A repository for:
 
-Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). A trifold approach to quantify the effect of a common olfactory lure on the detection probability of mammals captured on camera traps
+Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in prep). The Effect of Lure on Detecting Mammals with Camera Traps.
 
 ---
 
