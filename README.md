@@ -38,7 +38,7 @@ Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in review).
 
 ---
 
-<div align="center"><img width="150" height="auto" src="./images/coyote.JPG" alt="A silhouette of a coyote." /></div>
+<div align="center"><img width="150" height="auto" src="./images/coyote.png" alt="A silhouette of a coyote." /></div>
 
 <div align="center"> <h3>Data</h3> </div>
 
