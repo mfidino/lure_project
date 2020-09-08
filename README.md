@@ -1,7 +1,7 @@
 
 ### A repository for:
 
-Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (in review). The Effect of Lure on Detecting Mammals with Camera Traps.
+Fidino, M., Barnas, G.R., Lehrer, E.W., Murray, M., and Magle, S.B. (2020). The Effect of Lure on Detecting Mammals with Camera Traps.
 
 ---
 
